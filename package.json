@@ -1,0 +1,47 @@
+{
+  "name": "optimizedtemplate",
+  "version": "1.1.0",
+  "homepage": "https://github.com/vorobyovkirill/optimized-template-gulp-sass-bourbon-neat-v.2",
+  "description": "Optimized Template - Gulp, SASS, Bourbon, Neat-v.2",
+  "scripts": {
+    "start": "./node_modules/.bin/gulp"
+  },
+  "author": {
+    "name": "Kirill Vorobyov",
+    "email": "mishkacod@gmail.com",
+    "url": "http://lessfront.com.ua/"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/vorobyovkirill/optimized-template-gulp-sass-bourbon-neat-v.2.git"
+  },
+  "devDependencies": {
+    "bourbon": "^4.3.2",
+    "bourbon-neat": "^2.0.0",
+    "browser-sync": "^2.18.8",
+    "del": "^2.2.2",
+    "gulp": "^3.9.1",
+    "gulp-autoprefixer": "^3.1.1",
+    "gulp-cache": "^0.4.5",
+    "gulp-clean-css": "^3.0.3",
+    "gulp-combine-mq": "^0.4.0",
+    "gulp-concat": "^2.6.1",
+    "gulp-csscomb": "^3.0.8",
+    "gulp-notify": "^3.0.0",
+    "gulp-plumber": "^1.1.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-sass": "^3.1.0",
+    "gulp-size": "^2.1.0",
+    "gulp-sourcemaps": "^2.4.1",
+    "gulp-uglify": "^2.0.1",
+    "gulp.spritesmith": "^6.3.0"
+  },
+  "config": {
+    "directories": {
+      "source": "./src",
+      "build": "./build"
+    }
+  },
+  "analyze": true
+}
