@@ -1,49 +1,54 @@
-"use strict"
+'use strict'
 
-// // ============================================
-// // Подключаем/регистрируем GULP пакеты/модули
-// // ============================================
-const gulp         = require('gulp'), // Подключаем Gulp
-			sass         = require('gulp-sass'), //Подключаем Sass пакет,
-			browserSync  = require('browser-sync'), // Подключаем Browser Sync
-			concat       = require('gulp-concat'), // Подключаем gulp-concat (для конкатенации файлов)
-			uglify       = require('gulp-uglify'), // Подключаем gulp-uglify (для сжатия JS)
-			cleanCSS     = require('gulp-clean-css'), // Подключаем пакет для минификации CSS
-			rename       = require('gulp-rename'), // Подключаем библиотеку для переименования файлов
-			del          = require('del'), // Подключаем библиотеку для удаления файлов и папок
-			cache        = require('gulp-cache'), // Подключаем библиотеку кеширования
-			autoprefixer = require('gulp-autoprefixer'), // Подключаем библиотеку для автоматического добавления префиксов
-			csscomb 		 = require('gulp-csscomb'), // Подключаем библиотеку для сортировки css свойств
-			notify       = require("gulp-notify"), // Подключаем обработчик ошибок Notify
-			plumber      = require('gulp-plumber'), // Подключаем Plumber
-			sourcemaps   = require('gulp-sourcemaps'), // Подключаем SourceMaps
-			size         = require('gulp-size'), // Подключаем Size
-			spritesmith  = require('gulp.spritesmith'), //Подключаем генератор спрайтов,
-			combineMq    = require('gulp-combine-mq'); //Подключаем комбинатрор медиа правил
+/**
+ * Dependencies
+ * -----------------------------------------------------------------------------
+ */
 
-// // ==========================================================
-// Создаем задачу для browserSync (Обновление без перезагрузки)
-// // ==========================================================
-gulp.task('browser-sync', function() {
+const browserSync  = require('browser-sync');
+const del          = require('del');
+const gulp         = require('gulp');
+const autoprefixer = require('gulp-autoprefixer');
+const cleanCSS     = require('gulp-clean-css');
+const combineMq    = require('gulp-combine-mq');
+const concat       = require('gulp-concat');
+const csscomb 		 = require('gulp-csscomb');
+const notify       = require("gulp-notify");
+const plumber      = require('gulp-plumber');
+const rename       = require('gulp-rename');
+const size         = require('gulp-size');
+const sass         = require('gulp-sass');
+const sourcemaps   = require('gulp-sourcemaps');
+const spritesmith  = require('gulp.spritesmith');
+const uglify       = require('gulp-uglify');
 
-	browserSync({ // Выполняем browserSync
-		server: { // Определяем параметры сервера
-			baseDir: 'src' // Директория для сервера - src
+/**
+ * Local dev server with live reload
+ * -----------------------------------------------------------------------------
+ */
+
+gulp.task('server', function() {
+
+	browserSync({
+		server: {
+			baseDir: 'src'
 		},
 		logPrefix: "optimizedtemplate",
 		port: 8080,
 		startPath: 'index.html',
-		notify: false // Отключаем уведомления
+		notify: false
 	});
 
 });
 
-// // ======================
-// Создаем задачу для SASS
-// // ======================
+/**
+ * Build styles with pre-processors and post-processors
+ * -----------------------------------------------------------------------------
+ */
+
 gulp.task('styles', function() {
 
-	return gulp.src('src/sass/**/*.sass') // Берем все файлы с расширением sass
+	return gulp.src('src/sass/**/*.sass')
 	.pipe(plumber({
 		errorHandler: notify.onError(function(err) {
 			return {
@@ -52,43 +57,46 @@ gulp.task('styles', function() {
 			};
 		})
 	}))
-	.pipe(sass()) // Преобразуем Sass/Bourbon/Neat в CSS посредством gulp-sass
-	.pipe(autoprefixer(['last 15 versions'])) // добавляем вендорные префиксы
-	.pipe(csscomb()) // Сортировка css свойств
-	.pipe(cleanCSS()) // Минимифицируем CSS
-	.pipe(rename({suffix: '.min', prefix : ''})) // Добавляем к файлу суфикс .min
-	.pipe(sourcemaps.write('./maps')) // Записываем карту кода как отдельный файл
+	.pipe(sass())
+	.pipe(autoprefixer(['last 15 versions']))
+	.pipe(csscomb())
+	.pipe(cleanCSS())
+	.pipe(rename({suffix: '.min', prefix : ''}))
+	.pipe(sourcemaps.write('./maps'))
 	.pipe(size({
 		title: 'Размер',
 		showFiles: true,
 		showTotal: false,
 	}))
-	.pipe(gulp.dest('src/css')) // Выгружаем результата в папку src/css
-	.pipe(browserSync.reload({stream: true})) // Обновляем CSS на странице при изменении
+	.pipe(gulp.dest('src/css'))
+	.pipe(browserSync.reload({stream: true}));
 });
 
-// // ===================================================
-// Создаем задачу js скриптов (сборка/сжимание/выгрузка)
-// // ===================================================
+/**
+ * Build scripts with transpilers
+ * -----------------------------------------------------------------------------
+ */
+
 gulp.task('scripts', function() {
 
-	return gulp.src([ // Берем все необходимые библиотеки
-		'bower_components/jquery/dist/jquery.min.js', // Берем jQuery
-		// сюда через заяпятую перечисляем все библиотеки
+	return gulp.src([
+		'bower_components/jquery/dist/jquery.min.js',
 		])
-		.pipe(concat('libs.min.js')) // Собираем их в кучу в новом файле libs.min.js
-		.pipe(uglify()) // Сжимаем JS файл
-		.pipe(gulp.dest('src/js')); // Выгружаем в папку src/js
+		.pipe(concat('libs.min.js'))
+		.pipe(uglify())
+		.pipe(gulp.dest('src/js'));
 
 	});
 
 
-// // ===============
-// Sprite задача
-// // ===============
+/**
+ * Build sprites
+ * -----------------------------------------------------------------------------
+ */
+
 gulp.task('sprite', function() {
 	var spriteData =
-				gulp.src('./images/sprites/*.*') // путь, откуда берем картинки для спрайта
+				gulp.src('./images/sprites/*.*')
 				.pipe(spritesmith({
 					imgName: 'sprite.png',
 					cssName: 'sprite.css',
@@ -96,67 +104,60 @@ gulp.task('sprite', function() {
 					algorithm: 'top-down',
 					padding: 5
 				}));
-		spriteData.img.pipe(gulp.dest('./images/sprites/')); // путь, куда сохраняем картинку
-		spriteData.css.pipe(gulp.dest('./images/sprites/')); // путь, куда сохраняем стили
+		spriteData.img.pipe(gulp.dest('./images/sprites/'));
+		spriteData.css.pipe(gulp.dest('./images/sprites/'));
 	});
 
-// // =============================
-// Создаем задачу для очистки кеша
-// // =============================
-gulp.task('clearcache', function (callback) {
+/**
+ * Remove build directory
+ * -----------------------------------------------------------------------------
+ */
+gulp.task('clean', function() {
 
-	return cache.clearAll();
-
-});
-
-// // ========================
-// Создаем задачу для очистки
-// // ========================
-gulp.task('removebuild', function() {
-
-	return del.sync('build'); // Удаляем папку build перед сборкой
+	return del.sync('build');
 
 });
 
 // // =========================================
 // Создаем задачу для финальной сборки проекта
 // // =========================================
-gulp.task('build', ['removebuild', 'styles', 'scripts'], function() {
+gulp.task('build', ['clean', 'styles', 'scripts'], function() {
 
 	var buildCss = gulp.src('src/css/**/*')
-	.pipe(gulp.dest('build/css')) // Переносим css в build
+	.pipe(gulp.dest('build/css'));
 
-	var buildFonts = gulp.src('src/fonts/**/*') // Переносим шрифты в build
-	.pipe(gulp.dest('build/fonts'))
+	var buildFonts = gulp.src('src/fonts/**/*')
+	.pipe(gulp.dest('build/fonts'));
 
-	var buildJs = gulp.src('src/js/**/*') // Переносим скрипты в build
-	.pipe(gulp.dest('build/js'))
+	var buildJs = gulp.src('src/js/**/*')
+	.pipe(gulp.dest('build/js'));
 
-	var buildHtml = gulp.src('src/*.html') // Переносим HTML в build
-	.pipe(gulp.dest('build'))
+	var buildHtml = gulp.src('src/*.html')
+	.pipe(gulp.dest('build'));
 
-	var buildImages = gulp.src('src/images/**/*') // Переносим images в build
-	.pipe(gulp.dest('build/images'))
+	var buildImages = gulp.src('src/images/**/*')
+	.pipe(gulp.dest('build/images'));
 
-	var buildImg = gulp.src('src/img/**/*') // Переносим img в build
+	var buildImg = gulp.src('src/img/**/*')
 	.pipe(gulp.dest('build/img'));
 
 });
 
-// // ========================================
-// Создаем задачу для слежения за изменениями
-// // ========================================
-//
-gulp.task('watch', ['styles', 'scripts', 'browser-sync'], function() {
+/**
+ * Watch task
+ * -----------------------------------------------------------------------------
+ */
+gulp.task('watch', ['styles', 'scripts', 'server'], function() {
 
-	gulp.watch('src/sass/**/*.sass', ['styles']); // Наблюдение за sass файлами в папке sass
-	gulp.watch('src/libs/**/*.js', ['scripts']); // Наблюдение за js файлами в папке libs
-	gulp.watch('src/js/**/*.js').on("change", browserSync.reload); // Наблюдение за js файлами в папке js
-	gulp.watch('src/*.html').on("change", browserSync.reload); // Наблюдение за html файлами в корне проекта
+	gulp.watch('src/sass/**/*.sass', ['styles']);
+	gulp.watch('src/libs/**/*.js', ['scripts']);
+	gulp.watch('src/js/**/*.js').on("change", browserSync.reload);
+	gulp.watch('src/*.html').on("change", browserSync.reload);
 
 });
 
-// // ===============
-// Дефолтная задача
-// // ===============
+/**
+ * Default task
+ * -----------------------------------------------------------------------------
+ */
 gulp.task('default', ['watch']); // Дефолтная задача запускающаяя слежение

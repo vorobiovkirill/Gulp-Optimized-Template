@@ -1,4 +1,10 @@
 .container
+	position: relative
+	max-width: 1140px
+	margin-right: auto
+	margin-left: auto
+
+.row
 	@include grid-container
 
 .responsive-img
@@ -15,7 +21,3 @@
 	width: 100%
 	max-width: 100%
 	margin-bottom: 1rem
-
-.col-3
-	@include grid-column(3, $neat-vk)
-	background-color: red
