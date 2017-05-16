@@ -1,12 +1,10 @@
 {
   "name": "optimizedtemplate",
-	"title": "Start Project",
-	"description": "Optimized Template - Gulp, SASS, Bourbon, Neat-v.2",
-  "version": "1.1.0",
-  "scripts": {
-    "start": "./node_modules/.bin/gulp"
-  },
-  "author": {
+  "title": "Gulp Optimized Template Starter Kit",
+  "description": "Gulp Optimized Template - Gulp, SASS, Bourbon, Neat, BrowserSync, Autoprefixer, Imagemin",
+  "version": "1.2.0",
+	"homepage": "https://vorobyovkirill.github.io",
+	 "author": {
     "name": "Kirill Vorobyov",
     "email": "mishkacod@gmail.com"
   },
@@ -15,27 +13,37 @@
     "type": "git",
     "url": "https://github.com/vorobyovkirill/optimized-template-gulp-sass-bourbon-neat-v.2.git"
   },
-	"homepage": "https://github.com/vorobyovkirill/optimized-template-gulp-sass-bourbon-neat-v.2",
-	"keywords": [
+  "keywords": [
     "sass",
     "scss",
     "bourbon",
     "neat",
     "starter",
     "gulp",
-    "smacss"
+    "smacss",
+    "BrowserSync",
+    "Imagemin",
+    "Autoprefixer"
   ],
+	"main": "gulpfile.js",
+	"scripts": {
+    "start": "gulp",
+    "build": "gulp build",
+    "clean-install": "rimraf build node_modules bower_components && npm install && bower install && npm run build"
+  },
   "devDependencies": {
     "bourbon": "^4.3.4",
     "bourbon-neat": "^2.0.0",
     "browser-sync": "^2.18.8",
     "del": "^2.2.2",
     "gulp": "^3.9.1",
-    "gulp-autoprefixer": "^3.1.1",
+    "gulp-autoprefixer": "^4.0.0",
+    "gulp-cache": "^0.4.6",
     "gulp-clean-css": "^3.0.4",
     "gulp-combine-mq": "^0.4.0",
     "gulp-concat": "^2.6.1",
     "gulp-csscomb": "^3.0.8",
+    "gulp-imagemin": "^3.2.0",
     "gulp-notify": "^3.0.0",
     "gulp-plumber": "^1.1.0",
     "gulp-rename": "^1.2.2",
@@ -43,7 +51,12 @@
     "gulp-size": "^2.1.0",
     "gulp-sourcemaps": "^2.6.0",
     "gulp-uglify": "^2.1.2",
-    "gulp.spritesmith": "^6.4.0"
+    "gulp.spritesmith": "^6.4.0",
+    "imagemin-gifsicle": "^5.1.0",
+    "imagemin-jpegtran": "^5.0.2",
+    "imagemin-optipng": "^5.2.1",
+		"normalize.css": "^7.0.0",
+    "rimraf": "^2.6.1"
   },
   "config": {
     "directories": {

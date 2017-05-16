@@ -127,7 +127,8 @@ typings/
 
 
 ### VisualStudioCode ###
-.vscode/*
+.vs
+.vscode
 !.vscode/settings.json
 !.vscode/tasks.json
 !.vscode/launch.json
@@ -412,3 +413,7 @@ __pycache__/
 
 build/
 resources/
+
+# Sprites
+/src/images/sprites/*
+/src/sass/helpers/_sprites.sass
