@@ -1,43 +1,50 @@
-html
+*
 	box-sizing: border-box
-	font-size: $base-font-size
+	outline: 0
+
+	&:after,
+	&:before
+		box-sizing: border-box
+
+html
 	-webkit-font-smoothing: antialiased
 	-moz-osx-font-smoothing: grayscale
-
-*,
-*:before,
-*:after
-	box-sizing: inherit
+	font-size: $base-font-size
 
 body
-	padding: 0
+	position: relative
+	width: 100%
+	height: 100%
 	margin: 0
+	padding: 0
 	background-color: #fff
-	color: #212121
-	font-family: $main-font-family
-	font-size: $base-font-size
-	font-style: normal
+	overflow-x: hidden
+	font:
+		family: $main-font-family
+		size: $base-font-size
 	line-height: $base-line-height
+	color: #212121
 
-ol, ul
+ol,
+ul
 	margin: 0
 	padding: 0
 	list-style-type: none
+	font-weight: inherit
 
 a
-	color: #212121
-	text-decoration: none
-	&:hover, &:focus
-		color: inherit
-		text-decoration: none
+	outline: 0
+	border: 0
+	color: inherit
+
+	&:hover,
+	&:focus
+		text-decoration: underline
 
 img
 	vertical-align: middle
-
-p
-	margin: 0 0 1rem
+	border: 0
 
 table
-	border-collapse: collapse
 	background-color: transparent
-
+	border-collapse: collapse
