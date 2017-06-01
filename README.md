@@ -1,6 +1,6 @@
 # Gulp Optimized Template (gulp-sass-bourbon-autoprefixer-browserSync-neat)
 
-v1.2.0
+v1.2.1
 
 ![Gulp Optimized Template logo](https://www.topdraw.com/assets/uploads/2014/02/bower-gulp-sass.png)
 
