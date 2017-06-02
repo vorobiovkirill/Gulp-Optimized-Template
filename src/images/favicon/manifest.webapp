@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "name": "Gulp Optimized Template",
+  "description": "Gulp Optimized Template",
+  "icons": {
+    "60": "/images/favicon/firefox_app_60x60.png",
+    "128": "/images/favicon/firefox_app_128x128.png",
+    "512": "/images/favicon/firefox_app_512x512.png"
+  },
+  "developer": {
+    "name": null,
+    "url": "http://http://localhost:8080/"
+  }
+}

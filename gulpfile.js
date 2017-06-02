@@ -19,6 +19,7 @@ const cleanCSS = require('gulp-clean-css');
 const combineMq = require('gulp-combine-mq');
 const concat = require('gulp-concat');
 const csscomb = require('gulp-csscomb');
+const favicons = require("gulp-favicons");
 const imagemin = require('gulp-imagemin');
 const inject = require('gulp-inject');
 const notify = require("gulp-notify");
@@ -206,6 +207,33 @@ gulp.task('sprites', () => {
 });
 
 /**
+ * Generate Favicon
+ * -----------------------------------------------------------------------------
+ */
+
+gulp.task("favicon", () => {
+
+	return gulp.src(dirs.srcPath + '/images/favicon.png')
+		.pipe(favicons({
+			appName: "Gulp Optimized Template",
+			appDescription: "Gulp Optimized Template",
+			developerURL: "http://localhost:8080/",
+			background: "#000000",
+			path: "/images/favicon/",
+			display: "standalone",
+			orientation: "portrait",
+			start_url: "/?homescreen=1",
+			version: 1.0,
+			logging: false,
+			online: false,
+			html: "index.html",
+			pipeHTML: true,
+			replace: true
+		}))
+		.pipe(gulp.dest(dirs.srcPath + '/images/favicon/'));
+});
+
+/**
  * Remove build directory
  * -----------------------------------------------------------------------------
  */
@@ -232,7 +260,7 @@ gulp.task('clear', () => {
  * -----------------------------------------------------------------------------
  */
 
-gulp.task('build', ['del', 'sprites', 'styles', 'scripts', 'images', 'sass-lint'], () => {
+gulp.task('build', ['del', 'sprites', 'styles', 'scripts', 'favicon', 'images', 'sass-lint'], () => {
 
 	const buildCss = gulp.src(dirs.srcPath + '/css/**/*')
 		.pipe(gulp.dest(dirs.buildPath + '/css'));
@@ -256,7 +284,7 @@ gulp.task('build', ['del', 'sprites', 'styles', 'scripts', 'images', 'sass-lint'
  * -----------------------------------------------------------------------------
  */
 
-gulp.task('watch', ['injects', 'sprites', 'styles', 'sass-lint', 'scripts', 'images', 'server'], () => {
+gulp.task('watch', ['injects', 'sprites', 'styles', 'sass-lint', 'scripts', 'server'], () => {
 
 	gulp.watch(dirs.srcPath + '/**/*.html', browserSync.reload);
 	gulp.watch(dirs.srcPath + '/sass/**/*.sass', ['styles']);
