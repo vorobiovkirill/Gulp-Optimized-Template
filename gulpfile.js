@@ -10,7 +10,7 @@
  * -----------------------------------------------------------------------------
  */
 
-const browserSync = require('browser-sync').create();
+const browserSync = require('browser-sync');
 const del = require('del');
 const gulp = require('gulp');
 const autoprefixer = require('gulp-autoprefixer');
@@ -19,6 +19,7 @@ const cleanCSS = require('gulp-clean-css');
 const combineMq = require('gulp-combine-mq');
 const concat = require('gulp-concat');
 const csscomb = require('gulp-csscomb');
+const favicons = require("gulp-favicons");
 const imagemin = require('gulp-imagemin');
 const inject = require('gulp-inject');
 const notify = require("gulp-notify");
@@ -32,6 +33,8 @@ const sourcemaps = require('gulp-sourcemaps');
 const spritesmith = require('gulp.spritesmith');
 const uglify = require('gulp-uglify');
 
+const reload = browserSync.reload;
+
 /**
  * Path
  * -----------------------------------------------------------------------------
@@ -40,11 +43,12 @@ const uglify = require('gulp-uglify');
 const dirs = {
 	buildPath: './build/',
 	srcPath: './src/'
-}
+};
 
 const sprite = {
 	src: './src/images/sprites/*.*'
-}
+};
+
 
 /**
  * Local dev server with live reload
@@ -53,7 +57,7 @@ const sprite = {
 
 gulp.task('server', () => {
 
-	return browserSync.init({
+	return browserSync({
 		server: {
 			baseDir: dirs.srcPath
 		},
@@ -101,9 +105,7 @@ gulp.task('styles', () => {
 			showTotal: false,
 		}))
 		.pipe(gulp.dest(dirs.srcPath + '/css'))
-		.pipe(browserSync.reload({
-			stream: true
-		}));
+		.pipe(reload({ stream: true }));
 
 });
 
@@ -142,7 +144,8 @@ gulp.task('scripts', () => {
 			showFiles: true,
 			showTotal: false,
 		}))
-		.pipe(gulp.dest(dirs.srcPath + '/js'));
+		.pipe(gulp.dest(dirs.srcPath + '/js'))
+		.pipe(reload({ stream: true }));
 
 });
 
@@ -191,18 +194,44 @@ gulp.task('images', () => {
 
 gulp.task('sprites', () => {
 
-	var spriteData =
-		gulp.src(sprite.src)
-			.pipe(spritesmith({
-				imgName: 'sprite.png',
-				cssName: '_sprites.sass',
-				cssFormat: 'sass',
-				algorithm: 'top-down',
-				padding: 5
-			}));
+	const spriteData = gulp.src(sprite.src)
+		.pipe(spritesmith({
+			imgName: 'sprite.png',
+			cssName: '_sprites.sass',
+			cssFormat: 'sass',
+			algorithm: 'top-down',
+			padding: 5
+		}));
 	spriteData.img.pipe(gulp.dest(dirs.srcPath + '/images/'));
 	spriteData.css.pipe(gulp.dest(dirs.srcPath + '/sass/helpers/'));
 
+});
+
+/**
+ * Generate Favicon
+ * -----------------------------------------------------------------------------
+ */
+
+gulp.task("favicon", () => {
+
+	return gulp.src(dirs.srcPath + '/images/favicon.png')
+		.pipe(favicons({
+			appName: "Gulp Optimized Template",
+			appDescription: "Gulp Optimized Template",
+			developerURL: "http://localhost:8080/",
+			background: "#000000",
+			path: "/images/favicon/",
+			display: "standalone",
+			orientation: "portrait",
+			start_url: "/?homescreen=1",
+			version: 1.0,
+			logging: false,
+			online: false,
+			html: "index.html",
+			pipeHTML: true,
+			replace: true
+		}))
+		.pipe(gulp.dest(dirs.srcPath + '/images/favicon/'));
 });
 
 /**
@@ -210,29 +239,25 @@ gulp.task('sprites', () => {
  * -----------------------------------------------------------------------------
  */
 
-gulp.task('del', () => {
-
-	return del.sync('build');
-
-});
+gulp.task('del', () =>
+	del.sync('build')
+);
 
 /**
  * Clear cashe
  * -----------------------------------------------------------------------------
  */
 
-gulp.task('clear', () => {
-
-	return cache.clearAll();
-
-});
+gulp.task('clear', () =>
+	cache.clearAll()
+);
 
 /**
  * Build task
  * -----------------------------------------------------------------------------
  */
 
-gulp.task('build', ['del', 'sprites', 'styles', 'scripts', 'images', 'sass-lint'], () => {
+gulp.task('build', ['del', 'sprites', 'styles', 'scripts', 'favicon', 'images', 'sass-lint'], () => {
 
 	const buildCss = gulp.src(dirs.srcPath + '/css/**/*')
 		.pipe(gulp.dest(dirs.buildPath + '/css'));
@@ -256,12 +281,12 @@ gulp.task('build', ['del', 'sprites', 'styles', 'scripts', 'images', 'sass-lint'
  * -----------------------------------------------------------------------------
  */
 
-gulp.task('watch', ['injects', 'sprites', 'styles', 'sass-lint', 'scripts', 'images', 'server'], () => {
+gulp.task('watch', ['injects', 'sprites', 'styles', 'sass-lint', 'scripts', 'server'], () => {
 
-	gulp.watch(dirs.srcPath + '/**/*.html', browserSync.reload);
+	gulp.watch(dirs.srcPath + '/**/*.html', reload);
 	gulp.watch(dirs.srcPath + '/sass/**/*.sass', ['styles']);
-	gulp.watch(dirs.srcPath + '/js/**/*.js', browserSync.reload);
-	gulp.watch(dirs.srcPath + '/images/**/*', browserSync.reload);
+	gulp.watch(dirs.srcPath + '/js/**/*.js', reload);
+	gulp.watch(dirs.srcPath + '/images/**/*', reload);
 
 });
 
