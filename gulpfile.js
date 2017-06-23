@@ -10,7 +10,7 @@
  * -----------------------------------------------------------------------------
  */
 
-const browserSync = require('browser-sync').create();
+const browserSync = require('browser-sync');
 const del = require('del');
 const gulp = require('gulp');
 const autoprefixer = require('gulp-autoprefixer');
@@ -33,6 +33,8 @@ const sourcemaps = require('gulp-sourcemaps');
 const spritesmith = require('gulp.spritesmith');
 const uglify = require('gulp-uglify');
 
+const reload = browserSync.reload;
+
 /**
  * Path
  * -----------------------------------------------------------------------------
@@ -47,6 +49,7 @@ const sprite = {
 	src: './src/images/sprites/*.*'
 };
 
+
 /**
  * Local dev server with live reload
  * -----------------------------------------------------------------------------
@@ -54,7 +57,7 @@ const sprite = {
 
 gulp.task('server', () => {
 
-	return browserSync.init({
+	return browserSync({
 		server: {
 			baseDir: dirs.srcPath
 		},
@@ -102,9 +105,7 @@ gulp.task('styles', () => {
 			showTotal: false,
 		}))
 		.pipe(gulp.dest(dirs.srcPath + '/css'))
-		.pipe(browserSync.reload({
-			stream: true
-		}));
+		.pipe(reload({ stream: true }));
 
 });
 
@@ -143,7 +144,8 @@ gulp.task('scripts', () => {
 			showFiles: true,
 			showTotal: false,
 		}))
-		.pipe(gulp.dest(dirs.srcPath + '/js'));
+		.pipe(gulp.dest(dirs.srcPath + '/js'))
+		.pipe(reload({ stream: true }));
 
 });
 
@@ -237,22 +239,18 @@ gulp.task("favicon", () => {
  * -----------------------------------------------------------------------------
  */
 
-gulp.task('del', () => {
-
-	return del.sync('build');
-
-});
+gulp.task('del', () =>
+	del.sync('build')
+);
 
 /**
  * Clear cashe
  * -----------------------------------------------------------------------------
  */
 
-gulp.task('clear', () => {
-
-	return cache.clearAll();
-
-});
+gulp.task('clear', () =>
+	cache.clearAll()
+);
 
 /**
  * Build task
@@ -285,10 +283,10 @@ gulp.task('build', ['del', 'sprites', 'styles', 'scripts', 'favicon', 'images', 
 
 gulp.task('watch', ['injects', 'sprites', 'styles', 'sass-lint', 'scripts', 'server'], () => {
 
-	gulp.watch(dirs.srcPath + '/**/*.html', browserSync.reload);
+	gulp.watch(dirs.srcPath + '/**/*.html', reload);
 	gulp.watch(dirs.srcPath + '/sass/**/*.sass', ['styles']);
-	gulp.watch(dirs.srcPath + '/js/**/*.js', browserSync.reload);
-	gulp.watch(dirs.srcPath + '/images/**/*', browserSync.reload);
+	gulp.watch(dirs.srcPath + '/js/**/*.js', reload);
+	gulp.watch(dirs.srcPath + '/images/**/*', reload);
 
 });
 
