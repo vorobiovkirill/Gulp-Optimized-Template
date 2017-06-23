@@ -41,11 +41,11 @@ const uglify = require('gulp-uglify');
 const dirs = {
 	buildPath: './build/',
 	srcPath: './src/'
-}
+};
 
 const sprite = {
 	src: './src/images/sprites/*.*'
-}
+};
 
 /**
  * Local dev server with live reload
@@ -192,15 +192,14 @@ gulp.task('images', () => {
 
 gulp.task('sprites', () => {
 
-	var spriteData =
-		gulp.src(sprite.src)
-			.pipe(spritesmith({
-				imgName: 'sprite.png',
-				cssName: '_sprites.sass',
-				cssFormat: 'sass',
-				algorithm: 'top-down',
-				padding: 5
-			}));
+	const spriteData = gulp.src(sprite.src)
+		.pipe(spritesmith({
+			imgName: 'sprite.png',
+			cssName: '_sprites.sass',
+			cssFormat: 'sass',
+			algorithm: 'top-down',
+			padding: 5
+		}));
 	spriteData.img.pipe(gulp.dest(dirs.srcPath + '/images/'));
 	spriteData.css.pipe(gulp.dest(dirs.srcPath + '/sass/helpers/'));
 
