@@ -2,7 +2,7 @@
   "name": "gulp-optimized-template",
   "title": "Gulp Optimized Template Starter Kit",
   "description": "Gulp Optimized Template - Gulp, SASS, Bourbon, Neat, BrowserSync, Autoprefixer, Imagemin",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "homepage": "https://vorobyovkirill.github.io",
   "author": {
     "name": "Kirill Vorobyov",
@@ -24,7 +24,7 @@
     "BrowserSync",
     "Imagemin",
     "Autoprefixer",
-    "normalize"
+    "normalize.css"
   ],
   "main": "gulpfile.js",
   "scripts": {
@@ -46,6 +46,7 @@
     "gulp-concat": "^2.6.1",
     "gulp-csscomb": "^3.0.8",
     "gulp-favicons": "^2.2.7",
+    "gulp-help": "^1.6.1",
     "gulp-imagemin": "^3.2.0",
     "gulp-inject": "^4.2.0",
     "gulp-notify": "^3.0.0",
@@ -60,7 +61,9 @@
     "imagemin-gifsicle": "^5.1.0",
     "imagemin-jpegtran": "^5.0.2",
     "imagemin-optipng": "^5.2.1",
+    "imagemin-pngquant": "^5.0.1",
     "normalize.css": "^7.0.0",
+    "requiredir": "^1.0.7",
     "rimraf": "^2.6.1",
     "stream-series": "^0.1.1"
   },
