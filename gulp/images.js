@@ -26,9 +26,9 @@ const sprite = {
  * -----------------------------------------------------------------------------
  */
 
-gulp.task('images', 'minify images', () => {
+gulp.task('images', 'minify images', () =>
 
-	return gulp.src(dirs.srcPath + '/images/**/*.*')
+	gulp.src(dirs.srcPath + '/images/**/*.*')
 		.pipe(plumber({
 			errorHandler: notify.onError(function (err) {
 				return {
@@ -48,6 +48,6 @@ gulp.task('images', 'minify images', () => {
 			title: 'Size',
 			showFiles: true,
 			showTotal: false,
-		}));
+		}))
 
-});
+);

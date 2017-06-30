@@ -34,9 +34,9 @@ const sprite = {
  * -----------------------------------------------------------------------------
  */
 
-gulp.task('styles', 'compile sass to css', () => {
+gulp.task('styles', 'compile sass to css', () =>
 
-	return gulp.src(dirs.srcPath + '/sass/**/*.sass')
+	gulp.src(dirs.srcPath + '/sass/**/*.sass')
 		.pipe(plumber({
 			errorHandler: notify.onError(function (err) {
 				return {
@@ -65,6 +65,8 @@ gulp.task('styles', 'compile sass to css', () => {
 			showTotal: false,
 		}))
 		.pipe(gulp.dest(dirs.srcPath + '/css'))
-		.pipe(reload({ stream: true }));
+		.pipe(reload({
+			stream: true
+		}))
 
-});
+);

@@ -22,9 +22,9 @@ const sprite = {
  * -----------------------------------------------------------------------------
  */
 
-gulp.task("favicon", + 'generate favicons', () => {
+gulp.task("favicon", + 'generate favicons', () =>
 
-	return gulp.src(dirs.srcPath + '/images/favicon.png')
+	gulp.src(dirs.srcPath + '/images/favicon.png')
 		.pipe(favicons({
 			appName: "Gulp Optimized Template",
 			appDescription: "Gulp Optimized Template",
@@ -54,8 +54,7 @@ gulp.task("favicon", + 'generate favicons', () => {
 				windows: false, // create Windows 8 tile icons
 				yandex: false // create Yandex browser icon
 			}
-
 		}))
-		.pipe(gulp.dest(dirs.srcPath + '/images/favicon/'));
+		.pipe(gulp.dest(dirs.srcPath + '/images/favicon/'))
 
-});
+);

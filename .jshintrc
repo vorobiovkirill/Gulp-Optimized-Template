@@ -1,0 +1,9 @@
+{
+	"jquery": true, // Define globals exposed by jQuery.
+	"node": true, // Define globals exposed by Node.js.
+	"esversion": 6, // Allow ES6.
+	"camelcase": true, // Force all variable names to use either camelCase style or UPPER_CASE with underscores.
+	"quotmark": "single", // Enforce use of single quotation marks for strings.
+	"strict": true, // Enforce placing 'use strict' at the top function scope
+	"unused": true // Warn when variables are defined but never used.
+}

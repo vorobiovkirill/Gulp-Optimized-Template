@@ -27,9 +27,9 @@ const sprite = {
  * -----------------------------------------------------------------------------
  */
 
-gulp.task('scripts', 'main js task', () => {
+gulp.task('scripts', 'main js task', () =>
 
-	return gulp.src([
+	gulp.src([
 		'bower_components/jquery/dist/jquery.min.js'
 	])
 		.pipe(concat('libs.min.js'))
@@ -40,6 +40,8 @@ gulp.task('scripts', 'main js task', () => {
 			showTotal: false,
 		}))
 		.pipe(gulp.dest(dirs.srcPath + '/js'))
-		.pipe(reload({ stream: true }));
+		.pipe(reload({
+			stream: true
+		}))
 
-});
+);

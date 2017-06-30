@@ -22,15 +22,15 @@ const sprite = {
  * -----------------------------------------------------------------------------
  */
 
-gulp.task('sass-lint', 'linting sass files', () => {
+gulp.task('sass-lint', 'linting sass files', () =>
 
-	return gulp.src(dirs.srcPath + '/sass/**/*.sass')
+	gulp.src(dirs.srcPath + '/sass/**/*.sass')
 		.pipe(sassLint({
 			options: {
 				'config-file': '.sass-lint.yaml'
 			}
 		}))
 		.pipe(sassLint.format())
-		.pipe(sassLint.failOnError());
+		.pipe(sassLint.failOnError())
 
-});
+);

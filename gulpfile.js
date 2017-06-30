@@ -7,5 +7,5 @@
 
 const requiredir = require('requiredir');
 
-// Require all tasks in gulp/tasks, including subfolders
+// Require all tasks in gulp/, including subfolders
 requiredir('./gulp', { recurse: true });

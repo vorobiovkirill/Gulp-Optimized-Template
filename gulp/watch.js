@@ -23,11 +23,11 @@ const sprite = {
  * -----------------------------------------------------------------------------
  */
 
-gulp.task('watch', ['injects', 'sprites', 'styles', 'sass-lint', 'scripts', 'server'], () => {
+gulp.task('watch', ['injects', 'sprites', 'styles', 'sass-lint', 'scripts', 'server'], () =>
 
-	gulp.watch(dirs.srcPath + '/**/*.html', reload);
-	gulp.watch(dirs.srcPath + '/sass/**/*.sass', ['styles']);
-	gulp.watch(dirs.srcPath + '/js/**/*.js', reload);
-	gulp.watch(dirs.srcPath + '/images/**/*', reload);
+	gulp.watch(dirs.srcPath + '/**/*.html', reload),
+	gulp.watch(dirs.srcPath + '/sass/**/*.sass', ['styles']),
+	gulp.watch(dirs.srcPath + '/js/**/*.js', reload),
+	gulp.watch(dirs.srcPath + '/images/**/*', ['sprites'], reload)
 
-});
+);

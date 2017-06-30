@@ -22,9 +22,9 @@ const sprite = {
  * -----------------------------------------------------------------------------
  */
 
-gulp.task('server', 'start server & open browser', () => {
+gulp.task('server', 'start server & open browser', () =>
 
-	return browserSync({
+	browserSync({
 		server: {
 			baseDir: dirs.srcPath
 		},
@@ -32,6 +32,6 @@ gulp.task('server', 'start server & open browser', () => {
 		port: 8080,
 		startPath: 'index.html',
 		notify: false
-	});
+	})
 
-});
+);

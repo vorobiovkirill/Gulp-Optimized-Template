@@ -1,11 +1,11 @@
 # https://github.com/sasstools/sass-lint/
 
 files:
-  include: 'src/sass/**/*.sass'
+  include: './src/sass/**/*.sass'
   ignore:
-    - 'src/sass/helpers/_sprites.sass'
-		- 'src/sass/helpers/_functions.sass'
-    - 'src/sass/helpers/_mixins.sass'
+    - './src/sass/helpers/_sprites.sass'
+	- './src/sass/helpers/_functions.sass'
+    - './src/sass/helpers/_mixins.sass'
 
 options:
   formatter: stylish
@@ -65,7 +65,7 @@ rules:
     - convention: '([a-z0-9]+-?)+'
 
   indentation:
-    - 2
+    - 4
     - size: tab
 
   leading-zero:

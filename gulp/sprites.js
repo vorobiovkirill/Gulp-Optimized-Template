@@ -14,7 +14,9 @@ const dirs = {
 };
 
 const sprite = {
-	src: './src/images/sprites/*.*'
+	src: dirs.srcPath + '/images/sprites/*.*',
+	img: dirs.srcPath + '/images/',
+	css: dirs.srcPath + '/sass/helpers/'
 };
 
 /**
@@ -24,7 +26,7 @@ const sprite = {
 
 gulp.task('sprites', 'generate sprites', () => {
 
-	const spriteData = gulp.src(sprite.src)
+	const spriteSrc = gulp.src(sprite.src)
 		.pipe(spritesmith({
 			imgName: 'sprite.png',
 			cssName: '_sprites.sass',
@@ -32,7 +34,9 @@ gulp.task('sprites', 'generate sprites', () => {
 			algorithm: 'top-down',
 			padding: 5
 		}));
-	spriteData.img.pipe(gulp.dest(dirs.srcPath + '/images/'));
-	spriteData.css.pipe(gulp.dest(dirs.srcPath + '/sass/helpers/'));
+	spriteSrc.img
+		.pipe(gulp.dest(sprite.img));
+	spriteSrc.css
+		.pipe(gulp.dest(sprite.css));
 
 });
