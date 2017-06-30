@@ -55,6 +55,7 @@ gulp.task('styles', 'compile sass to css', () =>
 		.pipe(csscomb())
 		.pipe(cleanCSS())
 		.pipe(rename({
+			basename: 'style',
 			suffix: '.min',
 			extname: '.css'
 		}))
