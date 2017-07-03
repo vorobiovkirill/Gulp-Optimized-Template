@@ -4,7 +4,6 @@ const browserSync = require('browser-sync');
 const gulp = require('gulp');
 const autoprefixer = require('gulp-autoprefixer');
 const cleanCSS = require('gulp-clean-css');
-const combineMq = require('gulp-combine-mq');
 const csscomb = require('gulp-csscomb');
 const notify = require("gulp-notify");
 const plumber = require('gulp-plumber');
@@ -23,10 +22,6 @@ const reload = browserSync.reload;
 const dirs = {
 	buildPath: './build/',
 	srcPath: './src/'
-};
-
-const sprite = {
-	src: './src/images/sprites/*.*'
 };
 
 /**
@@ -48,9 +43,13 @@ gulp.task('styles', 'compile sass to css', () =>
 		.pipe(sourcemaps.init())
 		.pipe(sass())
 		.pipe(autoprefixer([
-			'last 15 versions',
 			'> 1%',
-			'ie 8'
+			'ie >= 10',
+			'ff >= 30',
+			'safari >= 7',
+			'opera >= 23',
+			'ios >= 7',
+			'android >= 4.4'
 		]))
 		.pipe(csscomb())
 		.pipe(cleanCSS())

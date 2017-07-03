@@ -14,16 +14,12 @@ const dirs = {
 	srcPath: './src/'
 };
 
-const sprite = {
-	src: './src/images/sprites/*.*'
-};
-
 /**
  * Watch task
  * -----------------------------------------------------------------------------
  */
 
-gulp.task('watch', ['injects', 'sprites', 'styles', 'sass-lint', 'scripts', 'server'], () =>
+gulp.task('watch', ['injects', 'sprites', 'styles', 'sass-lint', 'libs', 'scripts', 'server'], () =>
 
 	gulp.watch(dirs.srcPath + '/**/*.html', reload),
 	gulp.watch(dirs.srcPath + '/sass/**/*.sass', ['styles']),

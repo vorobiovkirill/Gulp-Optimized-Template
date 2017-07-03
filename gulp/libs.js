@@ -2,7 +2,7 @@
 
 const browserSync = require('browser-sync');
 const gulp = require('gulp');
-const jshint = require('gulp-jshint');
+const concat = require('gulp-concat');
 const size = require('gulp-size');
 const uglify = require('gulp-uglify');
 
@@ -23,10 +23,12 @@ const dirs = {
  * -----------------------------------------------------------------------------
  */
 
-gulp.task('scripts', 'Concat Libs', () =>
+gulp.task('libs', 'Concat Libs', () =>
 
-	gulp.src([dirs.srcPath + '/js/common.js'])
-		.pipe(jshint())
+	gulp.src([
+		'bower_components/jquery/dist/jquery.min.js'
+	])
+		.pipe(concat('libs.min.js'))
 		.pipe(uglify())
 		.pipe(size({
 			title: 'Size',

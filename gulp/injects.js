@@ -14,10 +14,6 @@ const dirs = {
 	srcPath: './src/'
 };
 
-const sprite = {
-	src: './src/images/sprites/*.*'
-};
-
 /**
  * Injects styles and scripts
  * -----------------------------------------------------------------------------

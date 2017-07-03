@@ -17,10 +17,6 @@ const dirs = {
 	srcPath: './src/'
 };
 
-const sprite = {
-	src: './src/images/sprites/*.*'
-};
-
 /**
  * Optimize images
  * -----------------------------------------------------------------------------

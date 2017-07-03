@@ -13,10 +13,6 @@ const dirs = {
 	srcPath: './src/'
 };
 
-const sprite = {
-	src: './src/images/sprites/*.*'
-};
-
 /**
  * Lint Sass
  * -----------------------------------------------------------------------------
@@ -26,9 +22,7 @@ gulp.task('sass-lint', 'linting sass files', () =>
 
 	gulp.src(dirs.srcPath + '/sass/**/*.sass')
 		.pipe(sassLint({
-			options: {
-				'config-file': '.sass-lint.yaml'
-			}
+			configFile: '../.sass-lint.yml'
 		}))
 		.pipe(sassLint.format())
 		.pipe(sassLint.failOnError())

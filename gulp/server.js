@@ -13,10 +13,6 @@ const dirs = {
 	srcPath: './src/'
 };
 
-const sprite = {
-	src: './src/images/sprites/*.*'
-};
-
 /**
  * Local dev server with live reload
  * -----------------------------------------------------------------------------

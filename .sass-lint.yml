@@ -5,6 +5,7 @@ files:
   ignore:
     - './src/sass/helpers/_sprites.sass'
 	- './src/sass/helpers/_functions.sass'
+	- './src/sass/helpers/_neat-settings.scss'
     - './src/sass/helpers/_mixins.sass'
 
 options:

@@ -8,6 +8,6 @@ const cache = require('gulp-cache');
  * -----------------------------------------------------------------------------
  */
 
-gulp.task('clearCache', + 'Clear Cache', () =>
+gulp.task('clear', + 'Clear Cache', () =>
 	cache.clearAll()
 );

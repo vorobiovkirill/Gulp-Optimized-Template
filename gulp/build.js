@@ -12,16 +12,12 @@ const dirs = {
 	srcPath: './src/'
 };
 
-const sprite = {
-	src: './src/images/sprites/*.*'
-};
-
 /**
  * Build task
  * -----------------------------------------------------------------------------
  */
 
-gulp.task('build', ['del', 'sprites', 'styles', 'scripts', 'favicon', 'images', 'sass-lint'], () => {
+gulp.task('build', ['del', 'clear', 'favicon', 'sprites', 'images', 'styles', 'sass-lint', 'libs', 'scripts'], () => {
 
 	const buildCss = gulp.src(dirs.srcPath + '/css/**/*')
 		.pipe(gulp.dest(dirs.buildPath + '/css'));

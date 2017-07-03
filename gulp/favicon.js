@@ -13,16 +13,12 @@ const dirs = {
 	srcPath: './src/'
 };
 
-const sprite = {
-	src: './src/images/sprites/*.*'
-};
-
 /**
  * Generate Favicon
  * -----------------------------------------------------------------------------
  */
 
-gulp.task("favicon", + 'generate favicons', () =>
+gulp.task('favicon', + 'generate favicons', () =>
 
 	gulp.src(dirs.srcPath + '/images/favicon.png')
 		.pipe(favicons({

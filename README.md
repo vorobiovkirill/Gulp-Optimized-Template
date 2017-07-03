@@ -22,7 +22,7 @@ v1.2.2
 
 ## Как развернуть среду для проекта
  1. Скачиваем содержимое репозитория в папку проекта
- **`git clone https://github.com/vorobyovkirill/Gulp-Optimized-Template.git`** <br>
+ **`git clone https://github.com/vorobiovkirill/Gulp-Optimized-Template.git`** <br>
  или скачиваем архив и в ручную распаковываем его.
  2. В папке проекта в консоли выполняем команду **`npm i`** потом **`bower i`** или сразу **`npm i && bower i`** (должен быть установлен [Node.JS](https://nodejs.org/en/) и [NPM](https://www.npmjs.com/))
  3. Когда необходимые пакеты буду установлены (может потребоваться время), инициализируем настройку проекта (опционально) командой **`npm init`**
@@ -51,8 +51,8 @@ v1.2.2
 
 ## Рекомендации к использованию
 Чтобы работа над проектом с **Gulp Optimized Template** была легче и быстрее, рекомендую придерживаться следующих правил:
-1. В папке **src** придерживайтесь следующей структуры:
 
+1. В папке **src** придерживайтесь следующей структуры:
 + **css** — скомпилированные CSS файлы
 + **fonts** — папка со шрифтами поекта
 + **images** — папка с изображениями
@@ -61,11 +61,11 @@ v1.2.2
 
 2. Все библиотеки устанавливаются в **bower_components**. Также можно изменить в **.bowerrc**. Для их подключения используйте файл **gulpfile.js**.
 
-4. По-умолчанию компилируется все файлы с расширением **.sass**
+3. По-умолчанию компилируется все файлы с расширением **.sass**
 
-5. В верстку стоит подключать **минифицированные файлы** — main.min.css/common.min.js/libs.min.js, т.к. именно **они попадают затем в билд!**
+4. В верстку стоит подключать **минифицированные файлы** — main.min.css/common.min.js/libs.min.js, т.к. именно **они попадают затем в билд!**
 
 ## Обратная связь
 Почта: [mishkacod@gmail.com](mailto:mishkacod@gmail.com)
 
-Или написать **[Issue](https://github.com/vorobyovkirill/optimized-template-gulp-sass-bourbon-neat-v.2/issues/new)**
+Или написать **[Issue](https://github.com/vorobiovkirill/optimized-template-gulp-sass-bourbon-neat-v.2/issues/new)**

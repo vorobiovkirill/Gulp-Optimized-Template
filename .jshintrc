@@ -1,3 +1,5 @@
+// https://github.com/jshint/jshint/blob/master/examples/.jshintrc
+
 {
 	"jquery": true, // Define globals exposed by jQuery.
 	"node": true, // Define globals exposed by Node.js.
@@ -5,5 +7,6 @@
 	"camelcase": true, // Force all variable names to use either camelCase style or UPPER_CASE with underscores.
 	"quotmark": "single", // Enforce use of single quotation marks for strings.
 	"strict": true, // Enforce placing 'use strict' at the top function scope
-	"unused": true // Warn when variables are defined but never used.
+	"unused": true, // Warn when variables are defined but never used.
+	"undef": true // true: Require all non-global variables to be declared (prevents global leaks)
 }
