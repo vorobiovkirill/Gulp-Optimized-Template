@@ -48,7 +48,7 @@
     "gulp-csscomb": "^3.0.8",
     "gulp-favicons": "^2.2.7",
     "gulp-help": "^1.6.1",
-    "gulp-imagemin": "^3.3.0",
+    "gulp-imagemin": "^3.4.0",
     "gulp-inject": "^4.3.0",
     "gulp-jshint": "^2.0.4",
     "gulp-notify": "^3.0.0",
