@@ -10,7 +10,7 @@ const series = require('stream-series');
  */
 
 const dirs = {
-	buildPath: './build/',
+	buildPath: './dist/',
 	srcPath: './src/'
 };
 

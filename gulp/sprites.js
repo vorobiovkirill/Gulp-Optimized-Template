@@ -9,7 +9,7 @@ const spritesmith = require('gulp.spritesmith');
  */
 
 const dirs = {
-	buildPath: './build/',
+	buildPath: './dist/',
 	srcPath: './src/'
 };
 

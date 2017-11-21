@@ -31,12 +31,13 @@
   "main": "gulpfile.js",
   "scripts": {
     "build": "gulp build",
-    "clean-install": "rimraf build node_modules bower_components && npm install && bower install && npm run build",
+    "clean:install": "npm cache clean --force && rimraf node_modules dist coverage bower_components && npm install && bower install && npm run build",
     "lint:css": "gulp sass-lint",
-    "start": "gulp"
+    "start": "npm run start:server",
+    "start:server": "gulp",
+    "rimraf": "rimraf"
   },
   "devDependencies": {
-    "bourbon": "^4.3.4",
     "bourbon-neat": "^2.1.0",
     "browser-sync": "^2.18.13",
     "del": "^3.0.0",
@@ -59,7 +60,7 @@
     "gulp-size": "^2.1.0",
     "gulp-sourcemaps": "^2.6.1",
     "gulp-uglify": "^3.0.0",
-    "gulp.spritesmith": "^6.5.1",
+    "gulp.spritesmith": "^6.7.0",
     "imagemin-gifsicle": "^5.2.0",
     "imagemin-jpegtran": "^5.0.2",
     "imagemin-optipng": "^5.2.1",
@@ -71,8 +72,8 @@
     "stream-series": "^0.1.1"
   },
   "engines": {
-    "npm": ">4",
-    "node": ">7"
+    "npm": ">=3",
+    "node": ">=6"
   },
   "analyze": true
 }

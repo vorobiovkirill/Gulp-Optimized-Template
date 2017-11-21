@@ -9,7 +9,7 @@ const gulp = require('gulp');
  */
 
 const dirs = {
-	buildPath: './build/',
+	buildPath: './dist/',
 	srcPath: './src/'
 };
 
@@ -19,5 +19,5 @@ const dirs = {
  */
 
 gulp.task('del', () =>
-	del.sync('build')
+	del.sync('dist')
 );

@@ -13,7 +13,7 @@ const size = require('gulp-size');
  */
 
 const dirs = {
-	buildPath: './build/',
+	buildPath: './dist/',
 	srcPath: './src/'
 };
 

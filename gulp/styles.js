@@ -20,7 +20,7 @@ const reload = browserSync.reload;
  */
 
 const dirs = {
-	buildPath: './build/',
+	buildPath: './dist/',
 	srcPath: './src/'
 };
 

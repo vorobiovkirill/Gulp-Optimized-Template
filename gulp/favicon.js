@@ -9,7 +9,7 @@ const favicons = require("gulp-favicons");
  */
 
 const dirs = {
-	buildPath: './build/',
+	buildPath: './dist/',
 	srcPath: './src/'
 };
 

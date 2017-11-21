@@ -8,7 +8,7 @@ const gulp = require('gulp');
  */
 
 const dirs = {
-	buildPath: './build/',
+	buildPath: './dist/',
 	srcPath: './src/'
 };
 

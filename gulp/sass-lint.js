@@ -9,7 +9,7 @@ const sassLint = require('gulp-sass-lint');
  */
 
 const dirs = {
-	buildPath: './build/',
+	buildPath: './dist/',
 	srcPath: './src/'
 };
 
